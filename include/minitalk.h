@@ -20,8 +20,8 @@ typedef struct s_data
 	pid_t	client_pid;
 }			t_data;
 
-int		ft_strlen(char *str);
-void	ft_putstr(char *s);
+int		ft_strlen(const char *str);
+void	ft_putstr(const char *s);
 void	ft_putnbr(int n);
 int		ft_atoi(const char *str);
 

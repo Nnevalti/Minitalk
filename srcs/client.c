@@ -17,7 +17,7 @@ void	send_char(pid_t pid, char c)
 	}
 }
 
-void	send_string(pid_t pid, char *msg)
+void	send_string(const pid_t pid, const char *msg)
 {
 	int	i;
 

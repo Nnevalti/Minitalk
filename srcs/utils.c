@@ -1,6 +1,6 @@
 #include "minitalk.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -10,7 +10,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	ft_putstr(char *s)
+void	ft_putstr(const char *s)
 {
 	if (!s)
 		return ;
