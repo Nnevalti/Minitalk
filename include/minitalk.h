@@ -12,6 +12,14 @@ typedef enum e_bool
 	true
 }	t_bool;
 
+typedef struct s_data
+{
+	int		i;
+	char	c;
+	t_bool	got_pid;
+	pid_t	client_pid;
+}			t_data;
+
 int		ft_strlen(char *str);
 void	ft_putstr(char *s);
 void	ft_putnbr(int n);
