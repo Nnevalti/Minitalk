@@ -1,53 +1,30 @@
 #include "minitalk.h"
 
-void	get_client_pid(int sig, t_data *data)
+void	get_char(int sig)
 {
-	if (sig == SIGUSR1)
-	{
-		data->client_pid += 1 << data->i;
-	}
-	data->i++;
-	if (data->i == 32)
-	{
-		data->i = 0;
-		ft_putstr("Client PID: ");
-		ft_putnbr(data->client_pid);
-		ft_putstr("\n");
-		data->got_pid = true;
-	}
-	return ;
-}
+	static int	i = 0;
+	static char	c = 0;
 
-void	get_char(int sig, t_data *data)
-{
 	if (sig == SIGUSR1)
-		data->c += 1 << data->i;
-	data->i++;
-	if (data->i == 8)
+		c += 1 << i;
+	i++;
+	if (i == 8)
 	{
-		if (data->c == '\0')
+		if (c == '\0')
 		{
 			write(1, "\n", 1);
 			usleep(200);
-			kill(data->client_pid, SIGUSR1);
-			data->client_pid = 0;
-			data->got_pid = false;
 		}
 		else
-			write(1, &data->c, 1);
-		data->i = 0;
-		data->c = 0;
+			write(1, &c, 1);
+		i = 0;
+		c = 0;
 	}
 }
 
 void	handler(int sig)
 {
-	static t_data	data = {0, 0, false, 0};
-
-	if (data.got_pid == false)
-		get_client_pid(sig, &data);
-	else
-		get_char(sig, &data);
+	get_char(sig);
 }
 
 int	main(void)
